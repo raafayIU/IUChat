@@ -199,6 +199,10 @@ final class ChatViewController: SLKTextViewController {
 
         setupReplyView()
         ThemeManager.addObserver(self)
+
+        UserDefaults.standard.set(true, forKey: "chat")
+        UserDefaults.standard.synchronize()
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -213,7 +217,6 @@ final class ChatViewController: SLKTextViewController {
 
         chatTitleView?.state = SocketManager.sharedInstance.state
     }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -224,7 +227,6 @@ final class ChatViewController: SLKTextViewController {
         collectionView?.setNeedsLayout()
         collectionView?.reloadData()
     }
-
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateChatPreviewModeViewConstraints()

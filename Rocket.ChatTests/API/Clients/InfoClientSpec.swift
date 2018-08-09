@@ -52,7 +52,7 @@ class InfoClientSpec: XCTestCase, RealmTestCase {
                     "service": "open",
                     "clientId": "h8K3pqagWgqxBE2cp",
                     "custom": true,
-                    "serverURL": "https://open.rocket.chat",
+                    "serverURL": "https://chat.iu.com.pk/",
                     "tokenPath": "/oauth/token",
                     "identityPath": "/api/v1/me",
                     "authorizePath": "/oauth/authorize",

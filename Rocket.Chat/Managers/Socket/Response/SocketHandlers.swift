@@ -18,20 +18,35 @@ extension SocketManager {
         guard let message = result.msg else {
             return Log.debug("Msg is invalid: \(result.result)")
         }
-
-        switch message {
-        case .connected:
-            return self.handleConnectionMessage(result, socket: socket)
-        case .ping:
-            return self.handlePingMessage(result, socket: socket)
-        case .changed, .added, .removed:
-            return self.handleModelUpdates(result, socket: socket)
-        case .updated, .unknown:
-            break
-        case .error:
-            self.handleError(result, socket: socket)
+        let value = !UserDefaults.standard.bool(forKey: "chat")
+        if (value) {
+            switch message {
+            case .connected:
+                return self.handleConnectionMessage(result, socket: socket)
+            case .ping:
+                return self.handlePingMessage(result, socket: socket)
+            case .changed, .added, .removed:
+                return self.handleModelUpdates(result, socket: socket)
+            case .updated, .unknown:
+                break
+            case .error:
+                self.handleError(result, socket: socket)
+            }
         }
-
+        else {
+            switch message {
+            case .connected, .changed:
+                return self.handleConnectionMessage(result, socket: socket)
+            case .ping:
+                return self.handlePingMessage(result, socket: socket)
+            case .added, .removed:
+                return self.handleModelUpdates(result, socket: socket)
+            case .updated, .unknown:
+                break
+            case .error:
+                self.handleError(result, socket: socket)
+            }
+        }
         // Call completion block
         guard let identifier = result.id,
             let completion = self.queue[identifier] else { return }

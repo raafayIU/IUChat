@@ -99,7 +99,7 @@ struct PushNotification {
 extension UNNotificationAction {
     static var reply: UNNotificationAction {
         return UNTextInputNotificationAction(
-            identifier: "REPLY",
+            identifier: "IU_REPLY",
             title: localized("notifications.action.reply"),
             options: .authenticationRequired
         )
@@ -109,7 +109,7 @@ extension UNNotificationAction {
 extension UNNotificationCategory {
     static var message: UNNotificationCategory {
         return UNNotificationCategory(
-            identifier: "MESSAGE",
+            identifier: "IU_CATEGORY",
             actions: [.reply],
             intentIdentifiers: [],
             options: []
@@ -118,7 +118,7 @@ extension UNNotificationCategory {
 
     static var messageNoReply: UNNotificationCategory {
         return UNNotificationCategory(
-            identifier: "REPLY",
+            identifier: "IU_CATEGORY",
             actions: [.reply],
             intentIdentifiers: [],
             options: []
@@ -137,27 +137,28 @@ extension PushManager {
     @discardableResult
     static func handleNotification(raw: [AnyHashable: Any], reply: String? = nil) -> Bool {
         guard let notification = PushNotification(raw: raw) else { return false }
+
         return handleNotification(notification, reply: reply)
     }
 
     @discardableResult
     static func handleNotification(_ notification: PushNotification, reply: String? = nil) -> Bool {
-        guard let index = DatabaseManager.serverIndexForUrl(notification.host) else {
-            return false
-        }
-
+//        guard let index = DatabaseManager.serverIndexForUrl(notification.host) else {
+//            return false
+//        }
+//let index = 0
         // side effect: needed for Subscription.notificationSubscription()
         AppManager.initialRoomId = notification.roomId
-
-        if index != DatabaseManager.selectedIndex {
-            AppManager.changeSelectedServer(index: index)
-        } else {
+//        print("selected server : \(DatabaseManager.selectedIndex)")
+//        if index != DatabaseManager.selectedIndex {
+//            AppManager.changeSelectedServer(index: DatabaseManager.selectedIndex)
+//        } else {
              if let auth = AuthManager.isAuthenticated() {
                 if let subscription = Subscription.notificationSubscription(auth: auth) {
                     AppManager.open(room: subscription)
                 }
              }
-        }
+//        }
 
         if let reply = reply {
             let appendage = notification.roomType == .directMessage ? "" : " @\(notification.username)"

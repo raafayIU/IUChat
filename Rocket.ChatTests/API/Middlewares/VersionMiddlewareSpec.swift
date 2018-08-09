@@ -25,7 +25,7 @@ class VersionMiddlewareSpec: XCTestCase {
         let available = Version(0, 60, 0)
         let required = Version(0, 61, 0)
 
-        let api: API! = API(host: "https://open.rocket.chat", version: available)
+        let api: API! = API(host: "https://chat.iu.com.pk/", version: available)
         let middleware = VersionMiddleware(api: api)
 
         var request = TestRequest()

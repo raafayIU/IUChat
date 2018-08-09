@@ -32,22 +32,22 @@ class URLExtensionSpec: XCTestCase {
     }
 
     func testInitWithStringAndScheme() {
-        XCTAssertEqual(URL(string: "open.rocket.chat", scheme: "https")?.absoluteString, "https://open.rocket.chat", "will add scheme")
-        XCTAssertEqual(URL(string: "open.rocket.chat:3000", scheme: "https")?.absoluteString, "https://open.rocket.chat:3000", "will add scheme & keep port")
-        XCTAssertEqual(URL(string: "https://open.rocket.chat", scheme: "https")?.absoluteString, "https://open.rocket.chat", "will return correct url")
-        XCTAssertEqual(URL(string: "https://open.rocket.chat:3000", scheme: "https")?.absoluteString, "https://open.rocket.chat:3000", "will return correct url & port")
-        XCTAssertEqual(URL(string: "http://open.rocket.chat", scheme: "https")?.absoluteString, "https://open.rocket.chat", "will force https scheme")
-        XCTAssertEqual(URL(string: "https://open.rocket.chat", scheme: "wss")?.absoluteString, "wss://open.rocket.chat", "will force wss scheme")
-        XCTAssertEqual(URL(string: "http://open.rocket.chat/path", scheme: "https")?.absoluteString, "https://open.rocket.chat/path", "will keep path")
-        XCTAssertEqual(URL(string: "http://open.rocket.chat?query=test", scheme: "https")?.absoluteString, "https://open.rocket.chat?query=test", "will keep query")
-        XCTAssertEqual(URL(string: "http://open.rocket.chat/path?query=test", scheme: "https")?.absoluteString, "https://open.rocket.chat/path?query=test", "will keep path & query")
-        XCTAssertEqual(URL(string: "http://open.rocket.chat:3000/path?query=test", scheme: "https")?.absoluteString, "https://open.rocket.chat:3000/path?query=test", "will keep path & query & port")
+        XCTAssertEqual(URL(string: "open.rocket.chat", scheme: "https")?.absoluteString, "https://chat.iu.com.pk/", "will add scheme")
+        XCTAssertEqual(URL(string: "open.rocket.chat:3000", scheme: "https")?.absoluteString, "https://chat.iu.com.pk/:3000", "will add scheme & keep port")
+        XCTAssertEqual(URL(string: "https://chat.iu.com.pk/", scheme: "https")?.absoluteString, "https://chat.iu.com.pk/", "will return correct url")
+        XCTAssertEqual(URL(string: "https://chat.iu.com.pk/:3000", scheme: "https")?.absoluteString, "https://chat.iu.com.pk/:3000", "will return correct url & port")
+        XCTAssertEqual(URL(string: "http://open.rocket.chat", scheme: "https")?.absoluteString, "https://chat.iu.com.pk/", "will force https scheme")
+        XCTAssertEqual(URL(string: "https://chat.iu.com.pk/", scheme: "wss")?.absoluteString, "wss://open.rocket.chat", "will force wss scheme")
+        XCTAssertEqual(URL(string: "http://open.rocket.chat/path", scheme: "https")?.absoluteString, "https://chat.iu.com.pk//path", "will keep path")
+        XCTAssertEqual(URL(string: "http://open.rocket.chat?query=test", scheme: "https")?.absoluteString, "https://chat.iu.com.pk/?query=test", "will keep query")
+        XCTAssertEqual(URL(string: "http://open.rocket.chat/path?query=test", scheme: "https")?.absoluteString, "https://chat.iu.com.pk//path?query=test", "will keep path & query")
+        XCTAssertEqual(URL(string: "http://open.rocket.chat:3000/path?query=test", scheme: "https")?.absoluteString, "https://chat.iu.com.pk/:3000/path?query=test", "will keep path & query & port")
         XCTAssertNil(URL(string: "http://", scheme: "https")?.absoluteString, "will return nil when hostless")
         XCTAssertNil(URL(string: "", scheme: "https"), "will return nil when empty")
     }
 
     func testQueryParameters() {
-        let testURL: URL! = URL(string: "https://open.rocket.chat/?query1=test1&query2=test2")
+        let testURL: URL! = URL(string: "https://chat.iu.com.pk//?query1=test1&query2=test2")
 
         guard let queryParameters = testURL.queryParameters else {
             XCTFail("queryParameters is not nil")
@@ -56,7 +56,7 @@ class URLExtensionSpec: XCTestCase {
 
         XCTAssertEqual(queryParameters, ["query1": "test1", "query2": "test2"], "queryParameters returns dictionary correctly")
 
-        let testURL2: URL! = URL(string: "https://open.rocket.chat/")
+        let testURL2: URL! = URL(string: "https://chat.iu.com.pk//")
 
         XCTAssertNil(testURL2.queryParameters, "queryParameters is nil when there are no queries")
     }

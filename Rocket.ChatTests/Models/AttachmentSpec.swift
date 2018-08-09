@@ -75,7 +75,7 @@ class AttachmentSpec: XCTestCase {
         attachment.titleLink = ""
 
         let result = attachment.fullFileURL(auth: auth)?.absoluteString
-        XCTAssertEqual(result, "https://open.rocket.chat?rc_uid=userId&rc_token=token", "file url is not nil")
+        XCTAssertEqual(result, "https://chat.iu.com.pk/?rc_uid=userId&rc_token=token", "file url is not nil")
     }
 
     func testAttachmentImagePath() {

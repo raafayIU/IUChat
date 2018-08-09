@@ -165,7 +165,7 @@ class DatabaseManagerSpec: XCTestCase {
 
         guard
             let foo = URL(string: "https://foo.com"),
-            let open = URL(string: "https://open.rocket.chat/"),
+            let open = URL(string: "https://chat.iu.com.pk//"),
             let unexisting = URL(string: "https://unexisting.chat")
         else {
             return XCTFail("url(s) can not be nil")

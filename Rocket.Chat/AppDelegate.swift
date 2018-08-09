@@ -66,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         ShortcutsManager.sync()
+
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -103,6 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Remote Notification
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Log.debug("device token : \(deviceToken.hexString)")
         UserDefaults.group.set(deviceToken.hexString, forKey: PushManager.kDeviceTokenKey)
     }
 

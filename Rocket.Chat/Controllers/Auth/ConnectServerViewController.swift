@@ -12,7 +12,7 @@ import semver
 
 final class ConnectServerViewController: BaseViewController {
 
-    internal let defaultURL = "https://chat.iu.com.pk"
+    internal let defaultURL = "https://chat.iu.com.pk/"
     internal var connecting = false
     internal let infoRequestHandler = InfoRequestHandler()
     internal let buttonConnectBottomSpacing: CGFloat = 24

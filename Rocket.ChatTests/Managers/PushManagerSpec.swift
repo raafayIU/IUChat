@@ -22,7 +22,7 @@ extension PushNotification {
                 ],
                 "badge": 5
             ],
-            "ejson": "{\"host\":\"https://open.rocket.chat/\",\"rid\":\"9euspXGgYsbEE5hi8\",\"sender\":{\"_id\":\"iBENea3v3cbD7RTry\",\"username\":\"johnny.appleseed\",\"name\":\"Johnny Appleseed\"},\"type\":\"c\",\"name\":\"general\"}",
+            "ejson": "{\"host\":\"https://chat.iu.com.pk//\",\"rid\":\"9euspXGgYsbEE5hi8\",\"sender\":{\"_id\":\"iBENea3v3cbD7RTry\",\"username\":\"johnny.appleseed\",\"name\":\"Johnny Appleseed\"},\"type\":\"c\",\"name\":\"general\"}",
             "messageFrom": "push"
         ] as [AnyHashable: Any]
     }
@@ -68,7 +68,7 @@ class PushNotificationSpec: XCTestCase {
         let notification = PushNotification(raw: PushNotification.testRaw())
 
         XCTAssertEqual(notification?.roomId, "9euspXGgYsbEE5hi8")
-        XCTAssertEqual(notification?.host, URL(string: "https://open.rocket.chat/"))
+        XCTAssertEqual(notification?.host, URL(string: "https://chat.iu.com.pk//"))
     }
 }
 

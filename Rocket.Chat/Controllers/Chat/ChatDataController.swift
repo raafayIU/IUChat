@@ -155,6 +155,7 @@ final class ChatDataController {
     func indexPathOfMessage(identifier: String) -> IndexPath? {
         return data.filter { item in
             guard let messageIdentifier = item.message?.identifier else { return false }
+            print("message : \(String(describing: item.message?.text))")
             return messageIdentifier == identifier
         }.compactMap { item in
             item.indexPath

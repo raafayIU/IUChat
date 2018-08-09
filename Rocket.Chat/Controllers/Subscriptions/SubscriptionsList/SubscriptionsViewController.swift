@@ -92,6 +92,9 @@ final class SubscriptionsViewController: BaseViewController {
         viewModel.didRebuildSections = { [weak self] in
             self?.tableView?.reloadData()
         }
+        
+        UserDefaults.standard.set(false, forKey: "chat")
+        UserDefaults.standard.synchronize()
     }
 
     override func viewDidLayoutSubviews() {
@@ -119,7 +122,7 @@ final class SubscriptionsViewController: BaseViewController {
         tableView.reloadData()
         titleView?.state = SocketManager.sharedInstance.state
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !(searchBar?.text?.isEmpty ?? true) {
